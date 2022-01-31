@@ -9,7 +9,7 @@ Each image has been pre-analyzed by an AI algorithm called [pypy-agender](https:
 ## 💻 Installation links
 
 - [Website](https://adityar224.github.io/Random-Face-Generator/#/)
-- [Android app](https://github.com/adityar224/Random-Face-Generator/releases/download/1.0.0/Random-Face-Generator-1.0.0.apk)
+- [Android app](https://github.com/adityar224/Random-Face-Generator/releases/download/1.0.1/Random-Face-Generator-1.0.1.apk)
 
 ## ✨ Features
 
