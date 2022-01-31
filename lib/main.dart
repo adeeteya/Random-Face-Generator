@@ -141,10 +141,10 @@ class _HomeState extends State<Home> {
           "Invalid Range",
           "Unable to generate a face in this age range. Please try again with a different range.",
         );
-      } else if (e.runtimeType == http.ClientException) {
+      } else {
         _displayErrorAlert(
           "Unknown Error Occurred",
-          "Please Try using our app.",
+          "Please Try again Later.",
         );
       }
       return;
@@ -159,35 +159,38 @@ class _HomeState extends State<Home> {
         decoration: customTheme.boxDecoration.copyWith(
           borderRadius: BorderRadius.circular(8),
         ),
-        child: ClipRRect(
-          borderRadius: BorderRadius.circular(8),
-          child: Image.network(
-            imageUrl,
-            frameBuilder: (context, child, frame, wasSynchronouslyLoaded) {
-              if (frame == null) {
-                return const FittedBox(
-                  child: SizedBox(),
-                );
-              }
-              return child;
-            },
-            loadingBuilder: (BuildContext context, Widget child,
-                ImageChunkEvent? loadingProgress) {
-              if (loadingProgress == null) {
-                return child;
-              }
-              return FittedBox(
-                fit: BoxFit.none,
-                child: CircularProgressIndicator(
-                  color: kRegentGray,
-                  value: loadingProgress.expectedTotalBytes != null
-                      ? loadingProgress.cumulativeBytesLoaded /
-                          loadingProgress.expectedTotalBytes!
-                      : null,
+        child: Image.network(
+          imageUrl,
+          frameBuilder: (context, child, frame, wasSynchronouslyLoaded) {
+            if (frame == null) {
+              return const FittedBox(
+                child: SizedBox(
+                  height: 1,
+                  width: 1,
                 ),
               );
-            },
-          ),
+            }
+            return ClipRRect(
+              borderRadius: BorderRadius.circular(8),
+              child: child,
+            );
+          },
+          loadingBuilder: (BuildContext context, Widget child,
+              ImageChunkEvent? loadingProgress) {
+            if (loadingProgress == null) {
+              return child;
+            }
+            return FittedBox(
+              fit: BoxFit.none,
+              child: CircularProgressIndicator(
+                color: kRegentGray,
+                value: loadingProgress.expectedTotalBytes != null
+                    ? loadingProgress.cumulativeBytesLoaded /
+                        loadingProgress.expectedTotalBytes!
+                    : null,
+              ),
+            );
+          },
         ),
       ),
     );
