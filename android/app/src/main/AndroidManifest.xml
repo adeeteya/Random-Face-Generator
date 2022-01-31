@@ -1,5 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.aditya.random_face_generator">
+    <uses-permission android:name="android.permission.INTERNET" />
    <application
         android:label="random_face_generator"
         android:name="${applicationName}"
