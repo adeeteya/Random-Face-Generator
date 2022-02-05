@@ -2,7 +2,7 @@
     package="com.aditya.random_face_generator">
     <uses-permission android:name="android.permission.INTERNET" />
    <application
-        android:label="random_face_generator"
+        android:label="Random Face Generator"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
