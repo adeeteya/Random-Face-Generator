@@ -90,7 +90,7 @@ BEGIN
         BLOCK "040904e4"
         BEGIN
             VALUE "CompanyName", "com.aditya" "\0"
-            VALUE "FileDescription", "This app Generates Random Faces which do not actually exist." "\0"
+            VALUE "FileDescription", "random_face_generator" "\0"
             VALUE "FileVersion", VERSION_AS_STRING "\0"
             VALUE "InternalName", "random_face_generator" "\0"
             VALUE "LegalCopyright", "Copyright (C) 2022 com.aditya. All rights reserved." "\0"

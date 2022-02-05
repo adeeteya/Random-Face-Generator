@@ -2,14 +2,15 @@
 # 👨👩 Flutter Random Face Generator
 
 
-A flutter app to generate random faces. The Generated faces do not actually exist in real life (in other words you could catfish without getting in trouble 😉). This app uses the [thispersondoesnotexist](https://thispersondoesnotexist.com/) and the [fakeface](https://thispersondoesnotexist.com/) api.
+A flutter app to generate random faces. The Generated faces do not actually exist in real life (in other words you could catfish without getting in trouble 😉 jk jk pls don't catfish). This app uses the [thispersondoesnotexist](https://thispersondoesnotexist.com/) and the [fakeface](https://thispersondoesnotexist.com/) api.
 
 Each image has been pre-analyzed by an AI algorithm called [pypy-agender](https://github.com/aristofun/py-agender) to identify the gender and age.
 
 ## 💻 Installation links
 
 - [Website](https://adityar224.github.io/Random-Face-Generator/#/)
-- [Android app](https://github.com/adityar224/Random-Face-Generator/releases/download/1.0.1/Random-Face-Generator-1.0.1.apk)
+- [Android app](https://github.com/adityar224/Random-Face-Generator/releases/download/1.0.2/Random-Face-Generator-1.0.2.apk)
+- [Windows Installer](https://github.com/adityar224/Random-Face-Generator/releases/download/1.0.2/Random-Face-Generator-Setup-1.0.2.exe)
 
 ## ✨ Features
 
@@ -41,13 +42,14 @@ Each image has been pre-analyzed by an AI algorithm called [pypy-agender](https:
 | Name                                                    | Usage                                               |
 | ------------------------------------------------------- | --------------------------------------------------- |
 | [**http**](https://pub.dev/packages/http)       | Api Calls                                    |
-| [**cupertino_icons**](https://pub.dev/packages/cupertino_icons)      | To use some iOS icons       |
+| [**flutter_lints**](https://pub.dev/packages/flutter_lints)      | For linting      |
 
 Please star⭐ the repo if you like what you see😊.
 
 ## 🤓 Author
 
-**Aditya R**
+**[Aditya R](https://github.com/adityar224)**
 
 ## 🔖 LICENCE
+Copyright (c) 2022 Aditya R
 [MIT](https://github.com/adityar224/Random-Face-Generator/blob/master/LICENSE)
