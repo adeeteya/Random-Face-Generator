@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:http/http.dart' as http;
 import 'package:random_face_generator/constants.dart';
 import 'package:random_face_generator/custom_theme.dart';
@@ -11,10 +12,12 @@ import 'package:random_face_generator/neumorphic_icon_button.dart';
 import 'package:random_face_generator/neumorphic_radio_button.dart';
 import 'package:random_face_generator/neumorphic_text_button.dart';
 
-void main() {
+void main() async {
   SystemChrome.setSystemUIOverlayStyle(
     const SystemUiOverlayStyle(statusBarColor: Colors.transparent),
   );
+  await Hive.initFlutter();
+  await Hive.openBox(kHiveSystemPrefs);
   runApp(
     const MaterialApp(
       home: Home(),
