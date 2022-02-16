@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:hive/hive.dart';
 import 'package:random_face_generator/constants.dart';
 
 class CustomTheme with ChangeNotifier {
-  static bool _isDark = ThemeMode.system == ThemeMode.dark;
+  static bool _isDark = Hive.box(kHiveSystemPrefs)
+      .get("darkMode", defaultValue: ThemeMode.system == ThemeMode.dark);
 
   void switchTheme() {
     _isDark = !_isDark;
     notifyListeners();
+    Hive.box(kHiveSystemPrefs).put("darkMode", _isDark);
   }
 
   IconData get icon => (_isDark) ? Icons.light_mode : Icons.dark_mode;

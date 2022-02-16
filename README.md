@@ -9,8 +9,8 @@ Each image has been pre-analyzed by an AI algorithm called [pypy-agender](https:
 ## 💻 Installation links
 
 - [Website](https://adityar224.github.io/Random-Face-Generator/#/)
-- [Android app](https://github.com/adityar224/Random-Face-Generator/releases/download/1.0.2/Random-Face-Generator-1.0.2.apk)
-- [Windows Installer](https://github.com/adityar224/Random-Face-Generator/releases/download/1.0.2/Random-Face-Generator-Setup-1.0.2.exe)
+- [Android app](https://github.com/adityar224/Random-Face-Generator/releases/download/1.1.0/Random-Face-Generator-1.1.0.apk)
+- [Windows Installer](https://github.com/adityar224/Random-Face-Generator/releases/download/1.1.0/Random-Face-Generator-Setup-1.1.0.exe)
 
 ## ✨ Features
 
@@ -43,6 +43,8 @@ Each image has been pre-analyzed by an AI algorithm called [pypy-agender](https:
 | ------------------------------------------------------- | --------------------------------------------------- |
 | [**http**](https://pub.dev/packages/http)       | Api Calls                                    |
 | [**flutter_lints**](https://pub.dev/packages/flutter_lints)      | For linting      |
+| [**hive**](https://pub.dev/packages/hive)      | For preference persistence     |
+| [**hive_flutter**](https://pub.dev/packages/hive_flutter)      | Extension for hive     |
 
 Please star⭐ the repo if you like what you see😊.
 
@@ -50,6 +52,6 @@ Please star⭐ the repo if you like what you see😊.
 
 **[Aditya R](https://github.com/adityar224)**
 
-## 🔖 LICENCE
+## 🔖 LICENSE
 Copyright (c) 2022 Aditya R
-[MIT](https://github.com/adityar224/Random-Face-Generator/blob/master/LICENSE)
+[MIT LICENSE](https://github.com/adityar224/Random-Face-Generator/blob/master/LICENSE)

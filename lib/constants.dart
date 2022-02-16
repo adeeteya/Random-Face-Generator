@@ -4,6 +4,7 @@ const String kDefaultUrl = "https://fakeface.rest/face/json";
 const String kInitialUrl = "https://thispersondoesnotexist.com/image";
 const String kCorsProxyUrl =
     "https://random-face-generator-proxy.herokuapp.com/";
+const String kHiveSystemPrefs = "system_prefs";
 const kLightBackgroundColor = Color(0xFFE0E5EC);
 const kLightSourceColor = Color(0x99FFFFFF);
 const kLightShadowColor = Color(0x99A3B1C6);
