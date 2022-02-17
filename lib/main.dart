@@ -1,29 +1,45 @@
 import 'dart:convert';
 import 'dart:io';
+import 'dart:typed_data';
+
+import 'package:download/download.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:http/http.dart' as http;
+import 'package:path_provider/path_provider.dart';
 import 'package:random_face_generator/constants.dart';
 import 'package:random_face_generator/custom_theme.dart';
 import 'package:random_face_generator/face.dart';
+import 'package:random_face_generator/neumorphic_elevated_button.dart';
 import 'package:random_face_generator/neumorphic_icon_button.dart';
 import 'package:random_face_generator/neumorphic_radio_button.dart';
-import 'package:random_face_generator/neumorphic_text_button.dart';
 
+late Uint8List initialImageList;
 void main() async {
   SystemChrome.setSystemUIOverlayStyle(
     const SystemUiOverlayStyle(statusBarColor: Colors.transparent),
   );
-  await Hive.initFlutter();
-  await Hive.openBox(kHiveSystemPrefs);
+  WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
+  FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
+  await initializeApp();
+  FlutterNativeSplash.remove();
   runApp(
     const MaterialApp(
       home: Home(),
       debugShowCheckedModeBanner: false,
     ),
   );
+}
+
+Future initializeApp() async {
+  await Hive.initFlutter();
+  await Hive.openBox(kHiveSystemPrefs);
+  String _initialUrl = kInitialUrl;
+  if (kIsWeb) _initialUrl = kCorsProxyUrl + kInitialUrl;
+  initialImageList = await http.readBytes(Uri.parse(_initialUrl));
 }
 
 class Home extends StatefulWidget {
@@ -36,6 +52,8 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   int _minimumAge = 0, _maximumAge = 100, _selectedIndex = 2;
   late String queryUrl, imageUrl;
+  Uint8List imageList = initialImageList;
+  bool _loading = false;
   CustomTheme customTheme = CustomTheme();
   @override
   void initState() {
@@ -128,11 +146,19 @@ class _HomeState extends State<Home> {
   Future _fetchImage() async {
     _setGenderQuery();
     _setAgeQuery();
+    setState(() {
+      _loading = true;
+    });
     try {
-      if (kIsWeb) queryUrl = kCorsProxyUrl + queryUrl;
-      final response = await http.get(Uri.parse(queryUrl));
-      imageUrl = Face.fromJson(jsonDecode(response.body)).imageUrl;
+      if (queryUrl == kDefaultUrl) {
+        imageUrl = kInitialUrl;
+      } else {
+        if (kIsWeb) queryUrl = kCorsProxyUrl + queryUrl;
+        final response = await http.get(Uri.parse(queryUrl));
+        imageUrl = Face.fromJson(jsonDecode(response.body)).imageUrl;
+      }
       if (kIsWeb) imageUrl = kCorsProxyUrl + imageUrl;
+      imageList = await http.readBytes(Uri.parse(imageUrl));
     } catch (e) {
       if (e.runtimeType == SocketException) {
         _displayErrorAlert(
@@ -152,7 +178,58 @@ class _HomeState extends State<Home> {
       }
       return;
     }
-    setState(() {});
+    setState(() {
+      _loading = false;
+    });
+  }
+
+  Future<String> getDestinationPathName(String pathName,
+      {bool isAndroid = true}) async {
+    String destinationPath =
+        pathName + "${isAndroid ? "/" : "\\"}randomface.png";
+    int i = 1;
+    bool _isFileExists = await File(destinationPath).exists();
+    while (_isFileExists) {
+      _isFileExists =
+          await File(pathName + "${isAndroid ? "/" : "\\"}randomface($i).png")
+              .exists();
+      if (_isFileExists == false) {
+        destinationPath =
+            pathName + "${isAndroid ? "/" : "\\"}randomface($i).png";
+        break;
+      }
+      i++;
+    }
+    return destinationPath;
+  }
+
+  Future _downloadImage() async {
+    if (_loading) return;
+    Directory? appDir;
+    final stream = Stream.fromIterable(imageList);
+    if (kIsWeb) {
+      await download(stream, "randomface.png");
+      return;
+    } else if (Platform.isAndroid) {
+      appDir = await getExternalStorageDirectory();
+    } else {
+      appDir = await getDownloadsDirectory();
+    }
+    String pathName = appDir?.path ?? "";
+    String destinationPath =
+        await getDestinationPathName(pathName, isAndroid: Platform.isAndroid);
+    await download(stream, destinationPath);
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(
+          "The image has been downloaded successfully to $destinationPath",
+          style: const TextStyle(color: kRegentGray),
+        ),
+        duration: const Duration(seconds: 5),
+        backgroundColor: customTheme.snackBarColor,
+        behavior: SnackBarBehavior.floating,
+      ),
+    );
   }
 
   Widget _imageView() {
@@ -162,39 +239,15 @@ class _HomeState extends State<Home> {
         decoration: customTheme.boxDecoration.copyWith(
           borderRadius: BorderRadius.circular(8),
         ),
-        child: Image.network(
-          imageUrl,
-          frameBuilder: (context, child, frame, wasSynchronouslyLoaded) {
-            if (frame == null) {
-              return const FittedBox(
-                child: SizedBox(
-                  height: 1,
-                  width: 1,
-                ),
-              );
-            }
-            return ClipRRect(
-              borderRadius: BorderRadius.circular(8),
-              child: child,
-            );
-          },
-          loadingBuilder: (BuildContext context, Widget child,
-              ImageChunkEvent? loadingProgress) {
-            if (loadingProgress == null) {
-              return child;
-            }
-            return FittedBox(
-              fit: BoxFit.none,
-              child: CircularProgressIndicator(
-                color: kRegentGray,
-                value: loadingProgress.expectedTotalBytes != null
-                    ? loadingProgress.cumulativeBytesLoaded /
-                        loadingProgress.expectedTotalBytes!
-                    : null,
+        child: (_loading)
+            ? const FittedBox(
+                fit: BoxFit.none,
+                child: CircularProgressIndicator(color: kRegentGray),
+              )
+            : ClipRRect(
+                borderRadius: BorderRadius.circular(8),
+                child: Image.memory(imageList),
               ),
-            );
-          },
-        ),
       ),
     );
   }
@@ -281,9 +334,30 @@ class _HomeState extends State<Home> {
             ),
           ),
           _buildSlider(),
-          NeumorphicTextButton(
-            text: "Generate",
-            onTap: _fetchImage,
+          Row(
+            children: [
+              Expanded(
+                flex: 5,
+                child: NeumorphicElevatedButton(
+                  child: const Text(
+                    "Generate",
+                    style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.w600,
+                      color: kRegentGray,
+                    ),
+                  ),
+                  onTap: _fetchImage,
+                ),
+              ),
+              const SizedBox(width: 20),
+              Expanded(
+                child: NeumorphicElevatedButton(
+                  child: const Icon(Icons.download, color: kLimeGreen),
+                  onTap: _downloadImage,
+                ),
+              ),
+            ],
           ),
         ],
       ),

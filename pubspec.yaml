@@ -3,7 +3,7 @@ description: This app Generates Random Faces which do not actually exist.
 
 publish_to: 'none' 
 
-version: 1.1.0+2
+version: 2.0.0+3
 
 environment:
   sdk: ">=2.15.1 <3.0.0"
@@ -15,6 +15,9 @@ dependencies:
   http: ^0.13.4
   hive: ^2.0.5
   hive_flutter: ^1.1.0
+  download: ^0.0.1+1
+  path_provider: ^2.0.9
+  flutter_native_splash: ^2.0.4
 
 dev_dependencies:
   flutter_test:
@@ -22,9 +25,17 @@ dev_dependencies:
 
   flutter_lints: ^1.0.4
 
+flutter_native_splash:
+  color: "#E0E5EC"
+  image: "assets/app_icon.png"
+  color_dark: "#292D32"
+  image_dark: "assets/app_icon.png"
+
 flutter:
 
   uses-material-design: true
+  assets:
+    - assets/
 
   
   
