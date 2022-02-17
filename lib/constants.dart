@@ -12,3 +12,4 @@ const kDarkBackgroundColor = Color(0xFF292D32);
 const kDarkSourceColor = Color(0xFF30343A);
 const kDarkShadowColor = Color(0xFF25262D);
 const kRegentGray = Color(0xFF7E8A9A);
+const kLimeGreen = Color(0xFF32C94E);

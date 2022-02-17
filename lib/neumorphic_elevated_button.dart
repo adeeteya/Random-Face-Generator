@@ -1,21 +1,21 @@
 import 'package:flutter/material.dart';
-import 'package:random_face_generator/constants.dart';
 import 'package:random_face_generator/custom_theme.dart';
 
-class NeumorphicTextButton extends StatefulWidget {
-  final String text;
+class NeumorphicElevatedButton extends StatefulWidget {
+  final Widget child;
   final VoidCallback onTap;
-  const NeumorphicTextButton({
+  const NeumorphicElevatedButton({
     Key? key,
-    required this.text,
     required this.onTap,
+    required this.child,
   }) : super(key: key);
 
   @override
-  _NeumorphicTextButtonState createState() => _NeumorphicTextButtonState();
+  _NeumorphicElevatedButtonState createState() =>
+      _NeumorphicElevatedButtonState();
 }
 
-class _NeumorphicTextButtonState extends State<NeumorphicTextButton> {
+class _NeumorphicElevatedButtonState extends State<NeumorphicElevatedButton> {
   bool _isPressed = false;
   final _customTheme = CustomTheme();
   void _onPointerDown(PointerDownEvent event) {
@@ -45,14 +45,7 @@ class _NeumorphicTextButtonState extends State<NeumorphicTextButton> {
           border: _isPressed ? _customTheme.border : null,
           boxShadow: (_isPressed) ? null : _customTheme.boxShadows,
         ),
-        child: Text(
-          widget.text,
-          style: const TextStyle(
-            fontSize: 18,
-            fontWeight: FontWeight.w600,
-            color: kRegentGray,
-          ),
-        ),
+        child: widget.child,
       ),
     );
   }

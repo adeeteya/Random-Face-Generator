@@ -17,6 +17,8 @@ class CustomTheme with ChangeNotifier {
   Color get shadowColor => (_isDark) ? kDarkShadowColor : kLightShadowColor;
   Color get backgroundColor =>
       (_isDark) ? kDarkBackgroundColor : kLightBackgroundColor;
+  Color get snackBarColor =>
+      (_isDark) ? kLightBackgroundColor : kDarkBackgroundColor;
   List<BoxShadow> get boxShadows => [
         BoxShadow(
           offset: const Offset(-9, -9),
