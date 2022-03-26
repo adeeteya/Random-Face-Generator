@@ -15,7 +15,6 @@ class NeumorphicIconButton extends StatefulWidget {
 
 class _NeumorphicIconButtonState extends State<NeumorphicIconButton> {
   bool _isPressed = false;
-  final _customTheme = CustomTheme();
   void _onPointerDown(PointerDownEvent event) {
     setState(() {
       _isPressed = true;
@@ -31,6 +30,8 @@ class _NeumorphicIconButtonState extends State<NeumorphicIconButton> {
 
   @override
   Widget build(BuildContext context) {
+    final _customTheme =
+        CustomTheme(Theme.of(context).brightness == Brightness.dark);
     return Listener(
       onPointerDown: _onPointerDown,
       onPointerUp: _onPointerUp,
@@ -40,7 +41,7 @@ class _NeumorphicIconButtonState extends State<NeumorphicIconButton> {
         duration: const Duration(milliseconds: 150),
         alignment: Alignment.center,
         decoration: BoxDecoration(
-          color: _customTheme.backgroundColor,
+          color: Theme.of(context).backgroundColor,
           shape: BoxShape.circle,
           gradient: LinearGradient(
             begin: Alignment.topLeft,

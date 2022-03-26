@@ -13,3 +13,25 @@ const kDarkSourceColor = Color(0xFF30343A);
 const kDarkShadowColor = Color(0xFF25262D);
 const kRegentGray = Color(0xFF7E8A9A);
 const kLimeGreen = Color(0xFF32C94E);
+
+final ThemeData kLightTheme = ThemeData(
+  brightness: Brightness.light,
+  backgroundColor: kLightBackgroundColor,
+  scaffoldBackgroundColor: kLightBackgroundColor,
+  appBarTheme: const AppBarTheme(
+    backgroundColor: kLightBackgroundColor,
+    elevation: 0,
+  ),
+  snackBarTheme: const SnackBarThemeData(backgroundColor: kDarkBackgroundColor),
+);
+final ThemeData kDarkTheme = ThemeData(
+  brightness: Brightness.dark,
+  backgroundColor: kDarkBackgroundColor,
+  scaffoldBackgroundColor: kDarkBackgroundColor,
+  appBarTheme: const AppBarTheme(
+    backgroundColor: kDarkBackgroundColor,
+    elevation: 0,
+  ),
+  snackBarTheme:
+      const SnackBarThemeData(backgroundColor: kLightBackgroundColor),
+);

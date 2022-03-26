@@ -22,7 +22,10 @@ class NeumorphicRadioButton extends StatelessWidget {
         duration: const Duration(milliseconds: 300),
         curve: Curves.easeIn,
         decoration: BoxDecoration(
-          border: (isSelected) ? CustomTheme().border : null,
+          border: (isSelected)
+              ? CustomTheme(Theme.of(context).brightness == Brightness.dark)
+                  .border
+              : null,
         ),
         child: Icon(
           icon,
