@@ -1,3 +1,4 @@
+import 'package:animated_theme_switcher/animated_theme_switcher.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
@@ -12,47 +13,29 @@ void main() async {
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
   await Hive.initFlutter();
-  await Hive.openBox(kHiveSystemPrefs);
+  Box systemPrefsBox = await Hive.openBox(kHiveSystemPrefs);
+  bool isDark = systemPrefsBox.get("darkMode",
+      defaultValue: ThemeMode.system == ThemeMode.dark);
   FlutterNativeSplash.remove();
-  runApp(const MyApp());
+  runApp(RandomFaceGeneratorApp(isDark: isDark));
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+class RandomFaceGeneratorApp extends StatelessWidget {
+  final bool isDark;
+  const RandomFaceGeneratorApp({Key? key, required this.isDark})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return ValueListenableBuilder<Box>(
-      valueListenable: Hive.box(kHiveSystemPrefs).listenable(),
-      builder: (context, box, _) {
-        bool _isDark = box.get("darkMode",
-            defaultValue: ThemeMode.system == ThemeMode.dark);
+    return ThemeProvider(
+      initTheme: (isDark) ? kDarkTheme : kLightTheme,
+      builder: (context, themeData) {
         return MaterialApp(
           debugShowCheckedModeBanner: false,
-          theme: ThemeData(
-            brightness: Brightness.light,
-            backgroundColor: kLightBackgroundColor,
-            scaffoldBackgroundColor: kLightBackgroundColor,
-            appBarTheme: const AppBarTheme(
-              backgroundColor: kLightBackgroundColor,
-              elevation: 0,
-            ),
-            snackBarTheme:
-                const SnackBarThemeData(backgroundColor: kDarkBackgroundColor),
+          theme: themeData,
+          home: Home(
+            isInitialDark: isDark,
           ),
-          darkTheme: ThemeData(
-            brightness: Brightness.dark,
-            backgroundColor: kDarkBackgroundColor,
-            scaffoldBackgroundColor: kDarkBackgroundColor,
-            appBarTheme: const AppBarTheme(
-              backgroundColor: kDarkBackgroundColor,
-              elevation: 0,
-            ),
-            snackBarTheme:
-                const SnackBarThemeData(backgroundColor: kLightBackgroundColor),
-          ),
-          themeMode: (_isDark) ? ThemeMode.dark : ThemeMode.light,
-          home: Home(isDark: _isDark),
         );
       },
     );

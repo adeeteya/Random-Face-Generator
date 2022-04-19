@@ -10,8 +10,10 @@ Please star⭐ the repo if you like what you see😊.
 ## 💻 Installation links
 
 - [Website](https://adityar224.github.io/Random-Face-Generator/#/)
-- [Android app](https://github.com/adityar224/Random-Face-Generator/releases/download/2.0.0/Random-Face-Generator-2.0.0.apk)
-- [Windows Installer](https://github.com/adityar224/Random-Face-Generator/releases/download/2.0.0/Random-Face-Generator-Setup-2.0.0.exe)
+- [Android app](https://github.com/adityar224/Random-Face-Generator/releases/download/2.1.0/RFG-Android-2.1.0.apk)
+- [Windows Installer](https://github.com/adityar224/Random-Face-Generator/releases/download/2.1.0/RFG-Windows-2.1.0.exe)
+- [Mac Os Installer](https://github.com/adityar224/Random-Face-Generator/releases/download/2.1.0/RFG-Macos-2.1.0.dmg)
+- [Ios App](https://github.com/adityar224/Random-Face-Generator/releases/download/2.1.0/RFG-Ios-2.1.0.ipa)
 
 ## ✨ Features
 
@@ -49,6 +51,7 @@ Please star⭐ the repo if you like what you see😊.
 | [**download**](https://pub.dev/packages/download)      | For downloading the image     |
 | [**path_provider**](https://pub.dev/packages/path_provider)      | For getting the path to download the image    |
 | [**flutter_native_splash**](https://pub.dev/packages/flutter_native_splash)      | To show the splash screen     |
+| [**animated_theme_switcher**](https://pub.dev/packages/animated_theme_switcher)      | To animate theme switching     |
 
 ## 🤓 Author
 

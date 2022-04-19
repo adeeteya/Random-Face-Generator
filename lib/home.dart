@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 import 'dart:typed_data';
-
+import 'package:animated_theme_switcher/animated_theme_switcher.dart';
 import 'package:download/download.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -16,8 +16,8 @@ import 'package:random_face_generator/widgets/neumorphic_icon_button.dart';
 import 'package:random_face_generator/widgets/neumorphic_radio_button.dart';
 
 class Home extends StatefulWidget {
-  final bool isDark;
-  const Home({Key? key, required this.isDark}) : super(key: key);
+  final bool isInitialDark;
+  const Home({Key? key, required this.isInitialDark}) : super(key: key);
 
   @override
   State<Home> createState() => _HomeState();
@@ -28,13 +28,15 @@ class _HomeState extends State<Home> {
   late String queryUrl, imageUrl;
   late Uint8List imageList;
   bool _loading = true;
+  late bool isDark;
   @override
   void initState() {
     queryUrl = kDefaultUrl;
     imageUrl = kInitialUrl;
+    isDark = widget.isInitialDark;
     if (kIsWeb) imageUrl = kCorsProxyUrl + imageUrl;
-    _fetchImage();
     super.initState();
+    _fetchImage();
   }
 
   void _setMale() {
@@ -117,9 +119,11 @@ class _HomeState extends State<Home> {
   Future _fetchImage() async {
     _setGenderQuery();
     _setAgeQuery();
-    setState(() {
-      _loading = true;
-    });
+    if (mounted) {
+      setState(() {
+        _loading = true;
+      });
+    }
     try {
       if (queryUrl == kDefaultUrl) {
         imageUrl = kInitialUrl;
@@ -149,24 +153,26 @@ class _HomeState extends State<Home> {
       }
       return;
     }
-    setState(() {
-      _loading = false;
-    });
+    if (mounted) {
+      setState(() {
+        _loading = false;
+      });
+    }
   }
 
   Future<String> getDestinationPathName(String pathName,
-      {bool isAndroid = true}) async {
+      {bool isBackwardSlash = true}) async {
     String destinationPath =
-        pathName + "${isAndroid ? "/" : "\\"}randomface.png";
+        pathName + "${isBackwardSlash ? "\\" : "/"}randomface.png";
     int i = 1;
     bool _isFileExists = await File(destinationPath).exists();
     while (_isFileExists) {
-      _isFileExists =
-          await File(pathName + "${isAndroid ? "/" : "\\"}randomface($i).png")
-              .exists();
+      _isFileExists = await File(
+              pathName + "${isBackwardSlash ? "\\" : "/"}randomface($i).png")
+          .exists();
       if (_isFileExists == false) {
         destinationPath =
-            pathName + "${isAndroid ? "/" : "\\"}randomface($i).png";
+            pathName + "${isBackwardSlash ? "\\" : "/"}randomface($i).png";
         break;
       }
       i++;
@@ -183,12 +189,14 @@ class _HomeState extends State<Home> {
       return;
     } else if (Platform.isAndroid) {
       appDir = await getExternalStorageDirectory();
+    } else if (Platform.isIOS) {
+      appDir = await getApplicationDocumentsDirectory();
     } else {
       appDir = await getDownloadsDirectory();
     }
     String pathName = appDir?.path ?? "";
-    String destinationPath =
-        await getDestinationPathName(pathName, isAndroid: Platform.isAndroid);
+    String destinationPath = await getDestinationPathName(pathName,
+        isBackwardSlash: Platform.isWindows);
     await download(stream, destinationPath);
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
@@ -206,7 +214,7 @@ class _HomeState extends State<Home> {
     return Expanded(
       child: Container(
         padding: const EdgeInsets.all(15),
-        decoration: CustomTheme(widget.isDark).boxDecoration.copyWith(
+        decoration: CustomTheme(isDark).boxDecoration.copyWith(
               borderRadius: BorderRadius.circular(8),
             ),
         child: (_loading)
@@ -226,8 +234,8 @@ class _HomeState extends State<Home> {
     return Container(
       height: 60,
       padding: const EdgeInsets.all(8),
-      decoration: CustomTheme(widget.isDark).boxDecoration.copyWith(
-            border: CustomTheme(widget.isDark).border,
+      decoration: CustomTheme(isDark).boxDecoration.copyWith(
+            border: CustomTheme(isDark).border,
           ),
       child: Row(
         children: [
@@ -252,7 +260,7 @@ class _HomeState extends State<Home> {
               min: 0,
               max: 100,
               activeColor: kRegentGray,
-              inactiveColor: CustomTheme(widget.isDark).shadowColor,
+              inactiveColor: CustomTheme(isDark).shadowColor,
               onChanged: _setAgeRange,
             ),
           ),
@@ -280,7 +288,7 @@ class _HomeState extends State<Home> {
         children: [
           Container(
             height: 60,
-            decoration: CustomTheme(widget.isDark).boxDecoration,
+            decoration: CustomTheme(isDark).boxDecoration,
             child: Row(
               children: [
                 Flexible(
@@ -338,54 +346,61 @@ class _HomeState extends State<Home> {
     );
   }
 
-  void _switchTheme() {
-    Hive.box(kHiveSystemPrefs).put("darkMode", !widget.isDark);
-  }
-
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text(
-          "Random Face Generator",
-          style: TextStyle(
-            fontWeight: FontWeight.w600,
-            color: kRegentGray,
+    return ThemeSwitchingArea(
+      child: Scaffold(
+        appBar: AppBar(
+          title: const Text(
+            "Random Face Generator",
+            style: TextStyle(
+              fontWeight: FontWeight.w600,
+              color: kRegentGray,
+            ),
           ),
+          actions: [
+            ThemeSwitcher(
+              builder: (context) {
+                return NeumorphicIconButton(
+                  icon: (isDark) ? Icons.light_mode : Icons.dark_mode,
+                  onTap: () {
+                    isDark = !isDark;
+                    ThemeSwitcher.of(context).changeTheme(
+                        isReversed: false,
+                        theme: (isDark) ? kDarkTheme : kLightTheme);
+                    Hive.box(kHiveSystemPrefs).put("darkMode", isDark);
+                  },
+                );
+              },
+            )
+          ],
         ),
-        actions: [
-          NeumorphicIconButton(
-            icon: (widget.isDark) ? Icons.light_mode : Icons.dark_mode,
-            onTap: _switchTheme,
-          ),
-        ],
-      ),
-      body: LayoutBuilder(
-        builder: (context, constraints) {
-          if (constraints.maxWidth > 700 ||
-              constraints.maxWidth > constraints.maxHeight) {
-            return Padding(
-              padding: const EdgeInsets.all(16),
-              child: Row(
-                children: [
-                  _imageView(),
-                  const SizedBox(width: 30),
-                  _optionsView(),
-                ],
-              ),
-            );
-          } else {
-            return Padding(
-              padding: const EdgeInsets.fromLTRB(16, 20, 16, 0),
-              child: Column(
-                children: [
-                  _imageView(),
-                  _optionsView(),
-                ],
-              ),
-            );
-          }
-        },
+        body: LayoutBuilder(
+          builder: (context, constraints) {
+            if (constraints.maxWidth > constraints.maxHeight) {
+              return Padding(
+                padding: const EdgeInsets.all(16),
+                child: Row(
+                  children: [
+                    _imageView(),
+                    const SizedBox(width: 30),
+                    _optionsView(),
+                  ],
+                ),
+              );
+            } else {
+              return Padding(
+                padding: const EdgeInsets.fromLTRB(16, 20, 16, 0),
+                child: Column(
+                  children: [
+                    _imageView(),
+                    _optionsView(),
+                  ],
+                ),
+              );
+            }
+          },
+        ),
       ),
     );
   }

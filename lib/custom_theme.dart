@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:random_face_generator/constants.dart';
 
-class CustomTheme {
+class CustomTheme with ChangeNotifier {
   late bool isDark;
   CustomTheme(this.isDark);
 
