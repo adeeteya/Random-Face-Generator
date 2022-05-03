@@ -48963,9 +48963,7 @@ break
 case 7:g=m.x="https://thispersondoesnotexist.com/image"
 s=8
 break
-case 9:g=A.c(m.r,"queryUrl")
-m.r=u.g+g
-s=10
+case 9:s=10
 return A.Y(A.anO(A.o6(A.c(m.r,"queryUrl"))),$async$jr)
 case 10:l=b
 g=l
