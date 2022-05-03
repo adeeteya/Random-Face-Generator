@@ -5,13 +5,48 @@ Each image has been pre-analyzed by an AI algorithm called [pypy-agender](https:
 
 Please star⭐ the repo if you like what you see😊.
 
-## 💻 Installation links
+## 💻 Installation and Usage
 
-- [Website](https://adityar224.github.io/Random-Face-Generator/#/)
-- [Android app](https://github.com/adityar224/Random-Face-Generator/releases/download/2.1.0/RFG-Android-2.1.0.apk)
-- [Windows Installer](https://github.com/adityar224/Random-Face-Generator/releases/download/2.1.0/RFG-Windows-2.1.0.exe)
-- [Mac Os Installer](https://github.com/adityar224/Random-Face-Generator/releases/download/2.1.0/RFG-Macos-2.1.0.dmg)
-- [Ios App](https://github.com/adityar224/Random-Face-Generator/releases/download/2.1.0/RFG-Ios-2.1.0.ipa)
+### [Website](https://adityar224.github.io/Random-Face-Generator/#/)
+
+### Linux
+
+#### Ubuntu
+- [![Get it from the Snap Store](https://snapcraft.io/static/images/badges/en/snap-store-black.svg)](https://snapcraft.io/random-face-generator)
+  (or)
+  ```bash
+  sudo snap install random-face-generator
+  ```
+- Launch from the app launcher or the installed apps list
+  (or)
+  ```bash
+  random-face-generator
+  ```
+
+#### Other Distros
+
+- [![Download flatpak](https://img.shields.io/badge/Download-flatpak-orange)](https://github.com/adityar224/Random-Face-Generator/releases/download/2.1.0/RFG-Linux-2.1.0.flatpak)
+
+- Open Terminal in the installed location
+
+-	```bash
+	sudo flatpak install RFG-Linux-2.1.0.flatpak
+	```
+-	```bash
+	flatpak run com.aditya.random-face-generator
+	```
+
+### Android
+[![Download apk](https://img.shields.io/badge/Download-apk-green)](https://github.com/adityar224/Random-Face-Generator/releases/download/2.1.0/RFG-Android-2.1.0.apk)
+
+### Windows
+[![Download exe](https://img.shields.io/badge/Download-exe-blue)](https://github.com/adityar224/Random-Face-Generator/releases/download/2.1.0/RFG-Windows-2.1.0.exe)
+
+### Mac Os
+[![Download dmg](https://img.shields.io/badge/Download-dmg-lightgrey)](https://github.com/adityar224/Random-Face-Generator/releases/download/2.1.0/RFG-Macos-2.1.0.dmg)
+
+### Ios
+[![Download ipa](https://img.shields.io/badge/Download-ipa-yellow)](https://github.com/adityar224/Random-Face-Generator/releases/download/2.1.0/RFG-Ios-2.1.0.ipa)
 
 ## ✨ Features
 

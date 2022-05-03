@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop-application">
+    <id>com.aditya.random_face_generator</id>
+    <name>Random Face Generator</name>
+    <summary>This app Generates Random Faces which do not actually exist.</summary>
+    <metadata_license>MIT</metadata_license>
+    <project_license>MIT</project_license>
+    <supports>
+        <control>pointing</control>
+        <control>keyboard</control>
+        <control>touch</control>
+    </supports>
+    <description>
+        <p>
+            A flutter app to generate random faces. The Generated faces do not actually exist in real life (in other words you could catfish without getting in trouble wink jk jk pls don&apos;t catfish). This app uses the thispersondoesnotexist and the fakeface api. Each image has been pre-analyzed by an AI algorithm called pypy-agender to identify the gender and age.
+        </p>
+    </description>
+    <launchable type="desktop-id">random-face-generator.desktop</launchable>
+</component>

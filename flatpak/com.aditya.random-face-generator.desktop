@@ -1,0 +1,12 @@
+[Desktop Entry]
+Version=2.1.0
+Type=Application
+
+Name=Random Face Generator
+Comment=This app Generates Random Faces which do not actually exist.
+Categories=Utility;
+
+Icon=com.aditya.random-face-generator
+Exec=flatpak run com.aditya.random-face-generator
+Terminal=false
+StartupWMClass=random-face-generator

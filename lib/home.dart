@@ -123,7 +123,6 @@ class _HomeState extends State<Home> {
       if (queryUrl == kDefaultUrl) {
         imageUrl = kInitialUrl;
       } else {
-        if (kIsWeb) queryUrl = kCorsProxyUrl + queryUrl;
         final response = await http.get(Uri.parse(queryUrl));
         imageUrl = Face.fromJson(jsonDecode(response.body)).imageUrl;
       }

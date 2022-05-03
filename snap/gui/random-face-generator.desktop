@@ -1,0 +1,9 @@
+[Desktop Entry]
+Version=2.1.0
+Name=Random Face Generator
+Comment=This app Generates Random Faces which do not actually exist.
+Exec=random-face-generator
+Icon=${SNAP}/meta/gui/random-face-generator.png
+Terminal=false
+Type=Application
+Categories=Utility;Application;
