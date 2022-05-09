@@ -9,16 +9,24 @@ Please star⭐ the repo if you like what you see😊.
 
 ### [Website](https://adityar224.github.io/Random-Face-Generator/#/)
 
+### Android
+[<img src="https://images-na.ssl-images-amazon.com/images/G/01/mobile-apps/devportal2/res/images/amazon-appstore-badge-english-black.png" width="200">](https://www.amazon.com/gp/product/B09ZBGJR9G) (or) [![Download apk](https://img.shields.io/badge/Download-apk-green)](https://github.com/adityar224/Random-Face-Generator/releases/download/2.1.0/RFG-Android-2.1.0.apk)
+
 ### Linux
 
 #### Ubuntu
 - [![Get it from the Snap Store](https://snapcraft.io/static/images/badges/en/snap-store-black.svg)](https://snapcraft.io/random-face-generator)
+
   (or)
-  ```bash
-  sudo snap install random-face-generator
-  ```
+
+    ```bash 
+    sudo snap install random-face-generator
+    ```
+
 - Launch from the app launcher or the installed apps list
+
   (or)
+
   ```bash
   random-face-generator
   ```
@@ -35,9 +43,6 @@ Please star⭐ the repo if you like what you see😊.
 -	```bash
 	flatpak run com.aditya.random-face-generator
 	```
-
-### Android
-[![Download apk](https://img.shields.io/badge/Download-apk-green)](https://github.com/adityar224/Random-Face-Generator/releases/download/2.1.0/RFG-Android-2.1.0.apk)
 
 ### Windows
 [![Download exe](https://img.shields.io/badge/Download-exe-blue)](https://github.com/adityar224/Random-Face-Generator/releases/download/2.1.0/RFG-Windows-2.1.0.exe)
