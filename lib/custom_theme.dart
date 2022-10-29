@@ -21,6 +21,7 @@ class CustomTheme with ChangeNotifier {
         ),
       ];
   BoxDecoration get boxDecoration => BoxDecoration(
+      borderRadius: BorderRadius.circular(8),
       color: (isDark) ? kDarkBackgroundColor : kLightBackgroundColor,
       boxShadow: boxShadows);
   Border get border => Border(

@@ -8,9 +8,9 @@ const String kHiveSystemPrefs = "system_prefs";
 const kLightBackgroundColor = Color(0xFFE0E5EC);
 const kLightSourceColor = Color(0x99FFFFFF);
 const kLightShadowColor = Color(0x99A3B1C6);
-const kDarkBackgroundColor = Color(0xFF292D32);
-const kDarkSourceColor = Color(0xFF30343A);
-const kDarkShadowColor = Color(0xFF25262D);
+const kDarkBackgroundColor = Color(0xFF24272C);
+const kDarkSourceColor = Color(0xFF292D33);
+const kDarkShadowColor = Color(0xFF1F2125);
 const kRegentGray = Color(0xFF7E8A9A);
 const kLimeGreen = Color(0xFF32C94E);
 

@@ -1,6 +1,5 @@
 import 'dart:convert';
 import 'dart:io';
-import 'dart:typed_data';
 import 'package:download/download.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -64,10 +63,10 @@ class _HomeState extends State<Home> {
   void _setGenderQuery() {
     switch (_selectedIndex) {
       case 0:
-        queryUrl = kDefaultUrl + "?gender=male";
+        queryUrl = "$kDefaultUrl?gender=male";
         break;
       case 1:
-        queryUrl = kDefaultUrl + "?gender=female";
+        queryUrl = "$kDefaultUrl?gender=female";
         break;
       case 2:
         queryUrl = kDefaultUrl;
@@ -122,11 +121,11 @@ class _HomeState extends State<Home> {
     try {
       if (queryUrl == kDefaultUrl) {
         imageUrl = kInitialUrl;
+        if (kIsWeb) imageUrl = kCorsProxyUrl + imageUrl;
       } else {
         final response = await http.get(Uri.parse(queryUrl));
         imageUrl = Face.fromJson(jsonDecode(response.body)).imageUrl;
       }
-      if (kIsWeb) imageUrl = kCorsProxyUrl + imageUrl;
       imageList = await http.readBytes(Uri.parse(imageUrl));
     } catch (e) {
       if (e.runtimeType == SocketException) {
@@ -155,16 +154,16 @@ class _HomeState extends State<Home> {
   Future<String> getDestinationPathName(String pathName,
       {bool isBackwardSlash = true}) async {
     String destinationPath =
-        pathName + "${isBackwardSlash ? "\\" : "/"}randomface.png";
+        "$pathName${isBackwardSlash ? "\\" : "/"}randomface.png";
     int i = 1;
-    bool _isFileExists = await File(destinationPath).exists();
-    while (_isFileExists) {
-      _isFileExists = await File(
-              pathName + "${isBackwardSlash ? "\\" : "/"}randomface($i).png")
+    bool isFileExists = await File(destinationPath).exists();
+    while (isFileExists) {
+      isFileExists = await File(
+              "$pathName${isBackwardSlash ? "\\" : "/"}randomface($i).png")
           .exists();
-      if (_isFileExists == false) {
+      if (isFileExists == false) {
         destinationPath =
-            pathName + "${isBackwardSlash ? "\\" : "/"}randomface($i).png";
+            "$pathName${isBackwardSlash ? "\\" : "/"}randomface($i).png";
         break;
       }
       i++;
@@ -180,7 +179,7 @@ class _HomeState extends State<Home> {
       await download(stream, "randomface.png");
       return;
     } else if (Platform.isAndroid) {
-      appDir = await getExternalStorageDirectory();
+      appDir = Directory("/storage/emulated/0/Download");
     } else if (Platform.isIOS) {
       appDir = await getApplicationDocumentsDirectory();
     } else {
@@ -190,6 +189,7 @@ class _HomeState extends State<Home> {
     String destinationPath = await getDestinationPathName(pathName,
         isBackwardSlash: Platform.isWindows);
     await download(stream, destinationPath);
+    if (!mounted) return;
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         content: Text(
@@ -205,7 +205,7 @@ class _HomeState extends State<Home> {
   Widget _imageView() {
     return Expanded(
       child: Container(
-        padding: const EdgeInsets.all(15),
+        padding: const EdgeInsets.all(12),
         decoration: CustomTheme(widget.isDark).boxDecoration.copyWith(
               borderRadius: BorderRadius.circular(8),
             ),
@@ -224,49 +224,40 @@ class _HomeState extends State<Home> {
 
   Widget _buildSlider() {
     return Container(
-      height: 60,
-      padding: const EdgeInsets.all(8),
-      decoration: CustomTheme(widget.isDark).boxDecoration.copyWith(
-            border: CustomTheme(widget.isDark).border,
-          ),
-      child: Row(
+      height: 70,
+      padding: const EdgeInsets.symmetric(vertical: 8),
+      decoration: CustomTheme(widget.isDark).boxDecoration,
+      child: Column(
         children: [
-          Text(
-            "$_minimumAge yrs",
-            style: const TextStyle(fontSize: 14, color: kRegentGray),
-          ),
-          if (_minimumAge < 10)
-            const Visibility(
-              visible: false,
-              maintainState: true,
-              maintainAnimation: true,
-              maintainSize: true,
-              child: Text("0"),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                const Text(
+                  "Age Range",
+                  style: TextStyle(
+                      fontWeight: FontWeight.w500, color: kRegentGray),
+                ),
+                Text(
+                  "$_minimumAge - $_maximumAge years",
+                  style: const TextStyle(
+                      fontWeight: FontWeight.w500, color: kRegentGray),
+                ),
+              ],
             ),
-          Flexible(
+          ),
+          SizedBox(
+            height: 35,
             child: RangeSlider(
-              values: RangeValues(
-                _minimumAge.toDouble(),
-                _maximumAge.toDouble(),
-              ),
               min: 0,
               max: 100,
               activeColor: kRegentGray,
               inactiveColor: CustomTheme(widget.isDark).shadowColor,
               onChanged: _setAgeRange,
+              values:
+                  RangeValues(_minimumAge.toDouble(), _maximumAge.toDouble()),
             ),
-          ),
-          if (_maximumAge < 10)
-            const Visibility(
-              visible: false,
-              maintainState: true,
-              maintainAnimation: true,
-              maintainSize: true,
-              child: Text("0"),
-            ),
-          Text(
-            "$_maximumAge yrs",
-            style: const TextStyle(fontSize: 14, color: kRegentGray),
           ),
         ],
       ),
@@ -280,6 +271,7 @@ class _HomeState extends State<Home> {
         children: [
           Container(
             height: 60,
+            padding: const EdgeInsets.all(1),
             decoration: CustomTheme(widget.isDark).boxDecoration,
             child: Row(
               children: [
@@ -287,21 +279,21 @@ class _HomeState extends State<Home> {
                   child: NeumorphicRadioButton(
                     onTap: _setMale,
                     isSelected: (_selectedIndex == 0),
-                    icon: Icons.male,
+                    icon: Icons.male_rounded,
                   ),
                 ),
                 Flexible(
                   child: NeumorphicRadioButton(
                     onTap: _setFemale,
                     isSelected: (_selectedIndex == 1),
-                    icon: Icons.female,
+                    icon: Icons.female_rounded,
                   ),
                 ),
                 Flexible(
                   child: NeumorphicRadioButton(
                     onTap: _setRandom,
                     isSelected: (_selectedIndex == 2),
-                    icon: Icons.shuffle,
+                    icon: Icons.shuffle_rounded,
                   ),
                 ),
               ],
@@ -313,6 +305,7 @@ class _HomeState extends State<Home> {
               Expanded(
                 flex: 5,
                 child: NeumorphicElevatedButton(
+                  onTap: _fetchImage,
                   child: const Text(
                     "Generate",
                     style: TextStyle(
@@ -321,14 +314,13 @@ class _HomeState extends State<Home> {
                       color: kRegentGray,
                     ),
                   ),
-                  onTap: _fetchImage,
                 ),
               ),
               const SizedBox(width: 20),
               Expanded(
                 child: NeumorphicElevatedButton(
-                  child: const Icon(Icons.download, color: kLimeGreen),
                   onTap: _downloadImage,
+                  child: const Icon(Icons.download, color: kLimeGreen),
                 ),
               ),
             ],

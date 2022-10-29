@@ -10,7 +10,7 @@ Please star⭐ the repo if you like what you see😊.
 ### [Website](https://adityar224.github.io/Random-Face-Generator/#/)
 
 ### Android
-[<img src="https://images-na.ssl-images-amazon.com/images/G/01/mobile-apps/devportal2/res/images/amazon-appstore-badge-english-black.png" width="200">](https://www.amazon.com/gp/product/B09ZBGJR9G) (or) [![Download apk](https://img.shields.io/badge/Download-apk-green)](https://github.com/adityar224/Random-Face-Generator/releases/download/2.1.0/RFG-Android-2.1.0.apk)
+[<img src="https://images-na.ssl-images-amazon.com/images/G/01/mobile-apps/devportal2/res/images/amazon-appstore-badge-english-black.png" width="200">](https://www.amazon.com/gp/product/B09ZBGJR9G) (or) [![Download apk](https://img.shields.io/badge/Download-apk-green)](https://github.com/adityar224/Random-Face-Generator/releases/download/2.2.0/RFG-Android-2.2.0.apk)
 
 ### Linux
 
@@ -45,7 +45,7 @@ Please star⭐ the repo if you like what you see😊.
 	```
 
 ### Windows
-[![Download exe](https://img.shields.io/badge/Download-exe-blue)](https://github.com/adityar224/Random-Face-Generator/releases/download/2.1.0/RFG-Windows-2.1.0.exe)
+[![Download exe](https://img.shields.io/badge/Download-exe-blue)](https://github.com/adityar224/Random-Face-Generator/releases/download/2.2.0/RFG-Windows-2.2.0.exe)
 
 ### Mac Os
 [![Download dmg](https://img.shields.io/badge/Download-dmg-lightgrey)](https://github.com/adityar224/Random-Face-Generator/releases/download/2.1.0/RFG-Macos-2.1.0.dmg)

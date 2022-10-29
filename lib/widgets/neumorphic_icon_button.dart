@@ -10,10 +10,10 @@ class NeumorphicIconButton extends StatefulWidget {
       : super(key: key);
 
   @override
-  _NeumorphicIconButtonState createState() => _NeumorphicIconButtonState();
+  NeumorphicIconButtonState createState() => NeumorphicIconButtonState();
 }
 
-class _NeumorphicIconButtonState extends State<NeumorphicIconButton> {
+class NeumorphicIconButtonState extends State<NeumorphicIconButton> {
   bool _isPressed = false;
   void _onPointerDown(PointerDownEvent event) {
     setState(() {
@@ -30,7 +30,7 @@ class _NeumorphicIconButtonState extends State<NeumorphicIconButton> {
 
   @override
   Widget build(BuildContext context) {
-    final _customTheme =
+    final customTheme =
         CustomTheme(Theme.of(context).brightness == Brightness.dark);
     return Listener(
       onPointerDown: _onPointerDown,
@@ -38,19 +38,21 @@ class _NeumorphicIconButtonState extends State<NeumorphicIconButton> {
       child: AnimatedContainer(
         padding: const EdgeInsets.all(8),
         margin: const EdgeInsets.all(8),
-        duration: const Duration(milliseconds: 150),
+        duration: const Duration(milliseconds: 300),
         alignment: Alignment.center,
         decoration: BoxDecoration(
           color: Theme.of(context).backgroundColor,
           shape: BoxShape.circle,
-          gradient: LinearGradient(
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-            colors: [
-              _customTheme.shadowColor,
-              _customTheme.sourceColor,
-            ],
-          ),
+          gradient: (_isPressed)
+              ? null
+              : LinearGradient(
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
+                  colors: [
+                    customTheme.sourceColor,
+                    customTheme.shadowColor,
+                  ],
+                ),
         ),
         child: Icon(
           widget.icon,

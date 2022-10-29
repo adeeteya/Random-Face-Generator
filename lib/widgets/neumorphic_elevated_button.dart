@@ -11,11 +11,11 @@ class NeumorphicElevatedButton extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  _NeumorphicElevatedButtonState createState() =>
-      _NeumorphicElevatedButtonState();
+  NeumorphicElevatedButtonState createState() =>
+      NeumorphicElevatedButtonState();
 }
 
-class _NeumorphicElevatedButtonState extends State<NeumorphicElevatedButton> {
+class NeumorphicElevatedButtonState extends State<NeumorphicElevatedButton> {
   bool _isPressed = false;
   void _onPointerDown(PointerDownEvent event) {
     setState(() {
@@ -32,19 +32,19 @@ class _NeumorphicElevatedButtonState extends State<NeumorphicElevatedButton> {
 
   @override
   Widget build(BuildContext context) {
-    final _customTheme =
+    final customTheme =
         CustomTheme(Theme.of(context).brightness == Brightness.dark);
     return Listener(
       onPointerDown: _onPointerDown,
       onPointerUp: _onPointerUp,
       child: AnimatedContainer(
         height: 60,
-        duration: const Duration(milliseconds: 150),
+        duration: const Duration(milliseconds: 300),
         alignment: Alignment.center,
         decoration: BoxDecoration(
           color: Theme.of(context).backgroundColor,
-          border: _isPressed ? _customTheme.border : null,
-          boxShadow: (_isPressed) ? null : _customTheme.boxShadows,
+          borderRadius: BorderRadius.circular(8),
+          boxShadow: !_isPressed ? customTheme.boxShadows : null,
         ),
         child: widget.child,
       ),

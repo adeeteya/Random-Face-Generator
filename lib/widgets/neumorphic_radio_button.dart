@@ -17,19 +17,22 @@ class NeumorphicRadioButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: onTap,
-      child: AnimatedContainer(
-        alignment: Alignment.center,
-        duration: const Duration(milliseconds: 300),
-        curve: Curves.easeIn,
-        decoration: BoxDecoration(
-          border: (isSelected)
-              ? CustomTheme(Theme.of(context).brightness == Brightness.dark)
-                  .border
-              : null,
-        ),
-        child: Icon(
-          icon,
-          color: kRegentGray,
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(8),
+        child: AnimatedContainer(
+          alignment: Alignment.center,
+          duration: const Duration(milliseconds: 300),
+          curve: Curves.easeIn,
+          decoration: BoxDecoration(
+            border: (isSelected)
+                ? CustomTheme(Theme.of(context).brightness == Brightness.dark)
+                    .border
+                : null,
+          ),
+          child: Icon(
+            icon,
+            color: kRegentGray,
+          ),
         ),
       ),
     );
