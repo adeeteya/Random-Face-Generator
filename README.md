@@ -7,10 +7,17 @@ Please star⭐ the repo if you like what you see😊.
 
 ## 💻 Installation and Usage
 
-### [Website](https://adityar224.github.io/Random-Face-Generator/#/)
+### [Click here to visit the website version](https://adityar224.github.io/Random-Face-Generator/#/)
 
 ### Android
-[<img src="https://images-na.ssl-images-amazon.com/images/G/01/mobile-apps/devportal2/res/images/amazon-appstore-badge-english-black.png" width="200">](https://www.amazon.com/gp/product/B09ZBGJR9G) (or) [![Download apk](https://img.shields.io/badge/Download-apk-green)](https://github.com/adityar224/Random-Face-Generator/releases/download/2.2.0/RFG-Android-2.2.0.apk)
+
+[<img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" width="250">](https://play.google.com/store/apps/details?id=com.aditya.random_face_generator&pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1)
+ (or)
+
+ [<img src="https://images-na.ssl-images-amazon.com/images/G/01/mobile-apps/devportal2/res/images/amazon-appstore-badge-english-black.png" width="250">](https://www.amazon.com/gp/product/B09ZBGJR9G)
+ (or)
+
+ [![Download apk](https://img.shields.io/badge/Download-apk-green)](https://github.com/adityar224/Random-Face-Generator/releases/download/2.2.0/RFG-Android-2.2.0.apk)
 
 ### Linux
 
