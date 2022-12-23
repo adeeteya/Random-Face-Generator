@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 
 const String kDefaultUrl = "https://fakeface.rest/face/json";
 const String kInitialUrl = "https://thispersondoesnotexist.com/image";
-const String kCorsProxyUrl =
-    "https://random-face-generator-proxy.onrender.com/";
+const String kCorsProxyUrl = "https://easy-puce-walkingstick-sock.cyclic.app/";
 const String kHiveSystemPrefs = "system_prefs";
 const kLightBackgroundColor = Color(0xFFE0E5EC);
 const kLightSourceColor = Color(0x99FFFFFF);
