@@ -42,7 +42,7 @@ class NeumorphicElevatedButtonState extends State<NeumorphicElevatedButton> {
         duration: const Duration(milliseconds: 300),
         alignment: Alignment.center,
         decoration: BoxDecoration(
-          color: Theme.of(context).backgroundColor,
+          color: Theme.of(context).colorScheme.background,
           borderRadius: BorderRadius.circular(8),
           boxShadow: !_isPressed ? customTheme.boxShadows : null,
         ),

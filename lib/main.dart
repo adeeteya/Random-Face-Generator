@@ -6,11 +6,15 @@ import 'package:random_face_generator/constants.dart';
 import 'package:random_face_generator/home.dart';
 
 void main() async {
-  SystemChrome.setSystemUIOverlayStyle(
-    const SystemUiOverlayStyle(statusBarColor: Colors.transparent),
-  );
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
+  SystemChrome.setSystemUIOverlayStyle(
+    const SystemUiOverlayStyle(
+      systemNavigationBarColor: Colors.transparent,
+      statusBarColor: Colors.transparent,
+    ),
+  );
+  await SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
   await Hive.initFlutter();
   await Hive.openBox(kHiveSystemPrefs);
   FlutterNativeSplash.remove();
@@ -28,11 +32,10 @@ class RandomFaceGeneratorApp extends StatelessWidget {
         bool isDark = box.get("darkMode",
             defaultValue: ThemeMode.system == ThemeMode.dark);
         return MaterialApp(
+          title: "Random Face Generator",
           debugShowCheckedModeBanner: false,
           theme: isDark ? kDarkTheme : kLightTheme,
-          home: Home(
-            isDark: isDark,
-          ),
+          home: Home(isDark: isDark),
         );
       },
     );

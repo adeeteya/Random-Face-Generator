@@ -41,7 +41,7 @@ class NeumorphicIconButtonState extends State<NeumorphicIconButton> {
         duration: const Duration(milliseconds: 300),
         alignment: Alignment.center,
         decoration: BoxDecoration(
-          color: Theme.of(context).backgroundColor,
+          color: Theme.of(context).colorScheme.background,
           shape: BoxShape.circle,
           gradient: (_isPressed)
               ? null

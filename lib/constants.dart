@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 
 const String kDefaultUrl = "https://fakeface.rest/face/json";
-const String kInitialUrl = "https://thispersondoesnotexist.com/image";
-const String kCorsProxyUrl = "https://easy-puce-walkingstick-sock.cyclic.app/";
 const String kHiveSystemPrefs = "system_prefs";
 const kLightBackgroundColor = Color(0xFFE0E5EC);
 const kLightSourceColor = Color(0x99FFFFFF);
@@ -14,8 +12,9 @@ const kRegentGray = Color(0xFF7E8A9A);
 const kLimeGreen = Color(0xFF32C94E);
 
 final ThemeData kLightTheme = ThemeData(
+  useMaterial3: true,
   brightness: Brightness.light,
-  backgroundColor: kLightBackgroundColor,
+  colorScheme: const ColorScheme.light(background: kLightBackgroundColor),
   scaffoldBackgroundColor: kLightBackgroundColor,
   appBarTheme: const AppBarTheme(
     backgroundColor: kLightBackgroundColor,
@@ -24,8 +23,9 @@ final ThemeData kLightTheme = ThemeData(
   snackBarTheme: const SnackBarThemeData(backgroundColor: kDarkBackgroundColor),
 );
 final ThemeData kDarkTheme = ThemeData(
+  useMaterial3: true,
   brightness: Brightness.dark,
-  backgroundColor: kDarkBackgroundColor,
+  colorScheme: const ColorScheme.dark(background: kDarkBackgroundColor),
   scaffoldBackgroundColor: kDarkBackgroundColor,
   appBarTheme: const AppBarTheme(
     backgroundColor: kDarkBackgroundColor,

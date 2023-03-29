@@ -29,8 +29,6 @@ class _HomeState extends State<Home> {
   @override
   void initState() {
     queryUrl = kDefaultUrl;
-    imageUrl = kInitialUrl;
-    if (kIsWeb) imageUrl = kCorsProxyUrl + imageUrl;
     super.initState();
     _fetchImage();
   }
@@ -94,8 +92,8 @@ class _HomeState extends State<Home> {
     }
   }
 
-  Future _displayErrorAlert(String title, String content) {
-    return showDialog(
+  Future _displayErrorAlert(String title, String content) async {
+    return await showDialog(
       context: context,
       builder: (context) => AlertDialog(
         title: Text(title),
@@ -119,13 +117,8 @@ class _HomeState extends State<Home> {
       _loading = true;
     });
     try {
-      if (queryUrl == kDefaultUrl) {
-        imageUrl = kInitialUrl;
-        if (kIsWeb) imageUrl = kCorsProxyUrl + imageUrl;
-      } else {
-        final response = await http.get(Uri.parse(queryUrl));
-        imageUrl = Face.fromJson(jsonDecode(response.body)).imageUrl;
-      }
+      final response = await http.get(Uri.parse(queryUrl));
+      imageUrl = Face.fromJson(jsonDecode(response.body)).imageUrl;
       imageList = await http.readBytes(Uri.parse(imageUrl));
     } catch (e) {
       if (e.runtimeType == SocketException) {
@@ -224,7 +217,7 @@ class _HomeState extends State<Home> {
 
   Widget _buildSlider() {
     return Container(
-      height: 70,
+      height: 71,
       padding: const EdgeInsets.symmetric(vertical: 8),
       decoration: CustomTheme(widget.isDark).boxDecoration,
       child: Column(
