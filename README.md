@@ -38,19 +38,6 @@ Please star⭐ the repo if you like what you see😊.
   random-face-generator
   ```
 
-#### Other Distros
-
-- [![Download flatpak](https://img.shields.io/badge/Download-flatpak-orange)](https://github.com/adityar224/Random-Face-Generator/releases/download/2.1.0/RFG-Linux-2.1.0.flatpak)
-
-- Open Terminal in the installed location
-
--	```bash
-	sudo flatpak install RFG-Linux-2.1.0.flatpak
-	```
--	```bash
-	flatpak run com.aditya.random-face-generator
-	```
-
 ### Windows
 [![Download exe](https://img.shields.io/badge/Download-exe-blue)](https://github.com/adityar224/Random-Face-Generator/releases/download/3.0.0/RFG-Windows-3.0.0.exe)
 
