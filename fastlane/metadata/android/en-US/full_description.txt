@@ -1,0 +1,5 @@
+<i>Random Face Generator</i> is a flutter app to generate random faces.
+The Generated faces do not actually exist in real life (in other words you could catfish without getting in trouble ☺).
+This app uses the <a href='https://hankhank10.github.io/fakeface/' target='_blank' rel='nofollow'>fakeface</a> API.
+
+Each image has been pre-analyzed by an AI algorithm called <a href='https://github.com/aristofun/py-agender' target='_blank' rel='nofollow'>pypy-agender</a> to identify the gender and age.
