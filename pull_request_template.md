@@ -1,7 +1,7 @@
 All Submissions:
 
 * [ ] Have you followed the guidelines in our Contributing document?
-* [ ] Have you checked to ensure there aren't other open [Pull Requests](www.github.com/adityar224/Random-Face-Generator/pulls) for the same update/change?
+* [ ] Have you checked to ensure there aren't other open [Pull Requests](www.github.com/adeeteya/Random-Face-Generator/pulls) for the same update/change?
 
 <!-- You can erase any parts of this template not applicable to your Pull Request. -->
 

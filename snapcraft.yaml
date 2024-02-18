@@ -4,8 +4,8 @@ summary: This app Generates Random Faces which do not actually exist.
 description: A flutter app to generate random faces. The Generated faces do not actually exist in real life (in other words you could catfish without getting in trouble wink jk jk pls don't catfish). This app uses the thispersondoesnotexist and the fakeface api. Each image has been pre-analyzed by an AI algorithm called pypy-agender to identify the gender and age.
 icon: snap/gui/random-face-generator.png
 contact: mailto:adeeteya@gmail.com
-source-code: https://github.com/adityar224/Random-Face-Generator
-issues: https://github.com/adityar224/Random-Face-Generator/issues
+source-code: https://github.com/adeeteya/Random-Face-Generator
+issues: https://github.com/adeeteya/Random-Face-Generator/issues
 license: MIT
 
 confinement: strict
