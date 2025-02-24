@@ -47,8 +47,8 @@ Please star⭐ the repo if you like what you see😊.
 ## ✨ Features
 
 - [x] Generate a Random Face
-- [] Filter by Gender (currently unavailable)
-- [] Filter by a Age Range (currently unavailable)
+- [ ] Filter by Gender (currently unavailable)
+- [ ] Filter by a Age Range (currently unavailable)
 - [x] Download Face Image
 - [x] Switch Theme Mode (Dark and Light)
 - [x] Responsive Design
