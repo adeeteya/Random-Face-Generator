@@ -14,10 +14,7 @@ Please star⭐ the repo if you like what you see😊.
 [<img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" width="250">](https://play.google.com/store/apps/details?id=com.aditya.random_face_generator&pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1)
  (or)
 
- [<img src="https://images-na.ssl-images-amazon.com/images/G/01/mobile-apps/devportal2/res/images/amazon-appstore-badge-english-black.png" width="250">](https://www.amazon.com/gp/product/B09ZBGJR9G)
- (or)
-
- [![Download apk](https://img.shields.io/badge/Download-apk-green)](https://github.com/adeeteya/Random-Face-Generator/releases/download/3.0.0/RFG-Android-3.0.0.apk)
+ [![Download apk](https://img.shields.io/badge/Download-apk-green)](https://github.com/adeeteya/Random-Face-Generator/releases/download/3.0.1/RFG-Android-3.0.1.apk)
 
 ### Linux
 
@@ -39,7 +36,7 @@ Please star⭐ the repo if you like what you see😊.
   ```
 
 ### Windows
-[![Download exe](https://img.shields.io/badge/Download-exe-blue)](https://github.com/adeeteya/Random-Face-Generator/releases/download/3.0.0/RFG-Windows-3.0.0.exe)
+[![Download exe](https://img.shields.io/badge/Download-exe-blue)](https://github.com/adeeteya/Random-Face-Generator/releases/download/3.0.1/RFG-Windows-3.0.1.exe)
 
 ### Mac Os
 [![Download dmg](https://img.shields.io/badge/Download-dmg-lightgrey)](https://github.com/adeeteya/Random-Face-Generator/releases/download/2.1.0/RFG-Macos-2.1.0.dmg)
@@ -50,8 +47,8 @@ Please star⭐ the repo if you like what you see😊.
 ## ✨ Features
 
 - [x] Generate a Random Face
-- [x] Filter by Gender
-- [x] Filter by a Age Range
+- [] Filter by Gender (currently unavailable)
+- [] Filter by a Age Range (currently unavailable)
 - [x] Download Face Image
 - [x] Switch Theme Mode (Dark and Light)
 - [x] Responsive Design
@@ -61,29 +58,29 @@ Please star⭐ the repo if you like what you see😊.
 
 - **Mobile**
 
-| Light | Dark |
-| - | - |
-| <img src="screenshots/mobile-portrait-light.jpg"> | <img src="screenshots/mobile-portrait-dark.jpg"> |
+| Light                                              | Dark                                              |
+|----------------------------------------------------|---------------------------------------------------|
+| <img src="screenshots/mobile-portrait-light.jpg">  | <img src="screenshots/mobile-portrait-dark.jpg">  |
 | <img src="screenshots/mobile-landscape-light.jpg"> | <img src="screenshots/mobile-landscape-dark.jpg"> |
 
 - **Desktop**
 
-| Light | Dark |
-| - | - |
-| <img src="screenshots/web-expanded-light.jpg"> | <img src="screenshots/web-expanded-dark.jpg"> |
+| Light                                            | Dark                                            |
+|--------------------------------------------------|-------------------------------------------------|
+| <img src="screenshots/web-expanded-light.jpg">   | <img src="screenshots/web-expanded-dark.jpg">   |
 | <img src="screenshots/web-mobileview-light.jpg"> | <img src="screenshots/web-mobileview-dark.jpg"> |
 
 ## 🔌 Plugins
 
-| Name | Usage |
-| - | - |
-| [**http**](https://pub.dev/packages/http) | Api Calls |
-| [**flutter_lints**](https://pub.dev/packages/flutter_lints) | For linting |
-| [**hive**](https://pub.dev/packages/hive) | For preference persistence |
-| [**hive_flutter**](https://pub.dev/packages/hive_flutter) | Extension for hive |
-| [**download**](https://pub.dev/packages/download) | For downloading the image |
-| [**path_provider**](https://pub.dev/packages/path_provider) | For getting the path to download the image |
-| [**flutter_native_splash**](https://pub.dev/packages/flutter_native_splash) | To show the splash screen |
+| Name                                                                        | Usage                                      |
+|-----------------------------------------------------------------------------|--------------------------------------------|
+| [**http**](https://pub.dev/packages/http)                                   | Api Calls                                  |
+| [**flutter_lints**](https://pub.dev/packages/flutter_lints)                 | For linting                                |
+| [**hive_ce**](https://pub.dev/packages/hive_ce)                             | For preference persistence                 |
+| [**hive_ce_flutter**](https://pub.dev/packages/hive_ce_flutter)             | Extension for hive                         |
+| [**download**](https://pub.dev/packages/download)                           | For downloading the image                  |
+| [**path_provider**](https://pub.dev/packages/path_provider)                 | For getting the path to download the image |
+| [**flutter_native_splash**](https://pub.dev/packages/flutter_native_splash) | To show the splash screen                  |
 
 ## 🤓 Author
 

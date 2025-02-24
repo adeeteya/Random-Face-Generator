@@ -5,9 +5,11 @@ import 'package:random_face_generator/custom_theme.dart';
 class NeumorphicIconButton extends StatefulWidget {
   final IconData icon;
   final VoidCallback onTap;
-  const NeumorphicIconButton(
-      {Key? key, required this.icon, required this.onTap})
-      : super(key: key);
+  const NeumorphicIconButton({
+    super.key,
+    required this.icon,
+    required this.onTap,
+  });
 
   @override
   NeumorphicIconButtonState createState() => NeumorphicIconButtonState();
@@ -30,8 +32,9 @@ class NeumorphicIconButtonState extends State<NeumorphicIconButton> {
 
   @override
   Widget build(BuildContext context) {
-    final customTheme =
-        CustomTheme(Theme.of(context).brightness == Brightness.dark);
+    final customTheme = CustomTheme(
+      Theme.of(context).brightness == Brightness.dark,
+    );
     return Listener(
       onPointerDown: _onPointerDown,
       onPointerUp: _onPointerUp,
@@ -41,24 +44,18 @@ class NeumorphicIconButtonState extends State<NeumorphicIconButton> {
         duration: const Duration(milliseconds: 300),
         alignment: Alignment.center,
         decoration: BoxDecoration(
-          color: Theme.of(context).colorScheme.background,
+          color: Theme.of(context).colorScheme.surface,
           shape: BoxShape.circle,
-          gradient: (_isPressed)
-              ? null
-              : LinearGradient(
-                  begin: Alignment.topLeft,
-                  end: Alignment.bottomRight,
-                  colors: [
-                    customTheme.sourceColor,
-                    customTheme.shadowColor,
-                  ],
-                ),
+          gradient:
+              (_isPressed)
+                  ? null
+                  : LinearGradient(
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                    colors: [customTheme.sourceColor, customTheme.shadowColor],
+                  ),
         ),
-        child: Icon(
-          widget.icon,
-          size: 24,
-          color: kRegentGray,
-        ),
+        child: Icon(widget.icon, size: 24, color: kRegentGray),
       ),
     );
   }

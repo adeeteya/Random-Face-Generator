@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
-const String kDefaultUrl = "https://fakeface.rest/face/json";
+const String kDefaultUrl = "https://thispersondoesnotexist.com/";
+const String kCorsUrl = "https://api.cors.lol/?url=thispersondoesnotexist.com/";
 const String kHiveSystemPrefs = "system_prefs";
 const kLightBackgroundColor = Color(0xFFE0E5EC);
 const kLightSourceColor = Color(0x99FFFFFF);
@@ -14,7 +15,7 @@ const kLimeGreen = Color(0xFF32C94E);
 final ThemeData kLightTheme = ThemeData(
   useMaterial3: true,
   brightness: Brightness.light,
-  colorScheme: const ColorScheme.light(background: kLightBackgroundColor),
+  colorScheme: const ColorScheme.light(surface: kLightBackgroundColor),
   scaffoldBackgroundColor: kLightBackgroundColor,
   appBarTheme: const AppBarTheme(
     backgroundColor: kLightBackgroundColor,
@@ -25,12 +26,13 @@ final ThemeData kLightTheme = ThemeData(
 final ThemeData kDarkTheme = ThemeData(
   useMaterial3: true,
   brightness: Brightness.dark,
-  colorScheme: const ColorScheme.dark(background: kDarkBackgroundColor),
+  colorScheme: const ColorScheme.dark(surface: kDarkBackgroundColor),
   scaffoldBackgroundColor: kDarkBackgroundColor,
   appBarTheme: const AppBarTheme(
     backgroundColor: kDarkBackgroundColor,
     elevation: 0,
   ),
-  snackBarTheme:
-      const SnackBarThemeData(backgroundColor: kLightBackgroundColor),
+  snackBarTheme: const SnackBarThemeData(
+    backgroundColor: kLightBackgroundColor,
+  ),
 );

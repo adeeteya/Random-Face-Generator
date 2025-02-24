@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
-import 'package:hive_flutter/hive_flutter.dart';
+import 'package:hive_ce_flutter/hive_flutter.dart';
 import 'package:random_face_generator/constants.dart';
 import 'package:random_face_generator/home.dart';
 
@@ -22,15 +22,17 @@ void main() async {
 }
 
 class RandomFaceGeneratorApp extends StatelessWidget {
-  const RandomFaceGeneratorApp({Key? key}) : super(key: key);
+  const RandomFaceGeneratorApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return ValueListenableBuilder<Box>(
       valueListenable: Hive.box(kHiveSystemPrefs).listenable(),
       builder: (context, box, _) {
-        bool isDark = box.get("darkMode",
-            defaultValue: ThemeMode.system == ThemeMode.dark);
+        bool isDark = box.get(
+          "darkMode",
+          defaultValue: ThemeMode.system == ThemeMode.dark,
+        );
         return MaterialApp(
           title: "Random Face Generator",
           debugShowCheckedModeBanner: false,

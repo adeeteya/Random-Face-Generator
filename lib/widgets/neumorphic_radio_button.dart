@@ -6,12 +6,12 @@ class NeumorphicRadioButton extends StatelessWidget {
   final bool isSelected;
   final IconData icon;
   final VoidCallback onTap;
-  const NeumorphicRadioButton(
-      {Key? key,
-      required this.isSelected,
-      required this.icon,
-      required this.onTap})
-      : super(key: key);
+  const NeumorphicRadioButton({
+    super.key,
+    required this.isSelected,
+    required this.icon,
+    required this.onTap,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -24,15 +24,14 @@ class NeumorphicRadioButton extends StatelessWidget {
           duration: const Duration(milliseconds: 300),
           curve: Curves.easeIn,
           decoration: BoxDecoration(
-            border: (isSelected)
-                ? CustomTheme(Theme.of(context).brightness == Brightness.dark)
-                    .border
-                : null,
+            border:
+                (isSelected)
+                    ? CustomTheme(
+                      Theme.of(context).brightness == Brightness.dark,
+                    ).border
+                    : null,
           ),
-          child: Icon(
-            icon,
-            color: kRegentGray,
-          ),
+          child: Icon(icon, color: kRegentGray),
         ),
       ),
     );
