@@ -5,10 +5,10 @@ class NeumorphicElevatedButton extends StatefulWidget {
   final Widget child;
   final VoidCallback onTap;
   const NeumorphicElevatedButton({
-    Key? key,
+    super.key,
     required this.onTap,
     required this.child,
-  }) : super(key: key);
+  });
 
   @override
   NeumorphicElevatedButtonState createState() =>
@@ -32,8 +32,9 @@ class NeumorphicElevatedButtonState extends State<NeumorphicElevatedButton> {
 
   @override
   Widget build(BuildContext context) {
-    final customTheme =
-        CustomTheme(Theme.of(context).brightness == Brightness.dark);
+    final customTheme = CustomTheme(
+      Theme.of(context).brightness == Brightness.dark,
+    );
     return Listener(
       onPointerDown: _onPointerDown,
       onPointerUp: _onPointerUp,
@@ -42,7 +43,7 @@ class NeumorphicElevatedButtonState extends State<NeumorphicElevatedButton> {
         duration: const Duration(milliseconds: 300),
         alignment: Alignment.center,
         decoration: BoxDecoration(
-          color: Theme.of(context).colorScheme.background,
+          color: Theme.of(context).colorScheme.surface,
           borderRadius: BorderRadius.circular(8),
           boxShadow: !_isPressed ? customTheme.boxShadows : null,
         ),
